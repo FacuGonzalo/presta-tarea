@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>usuario</name>
+	<displayName><![CDATA[Usuario]]></displayName>
+	<version><![CDATA[1.0.0]]></version>
+	<description><![CDATA[Información sobre usuarios]]></description>
+	<author><![CDATA[Facundo Gonzalo]]></author>
+	<tab><![CDATA[administration]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+</module>
