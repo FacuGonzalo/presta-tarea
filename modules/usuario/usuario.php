@@ -25,7 +25,14 @@ class Usuario extends Module {
     }
 
     public function install() {
-        return parent::install() && $this->installModuleTab();
+        if (Shop::isFeatureActive())
+            Shop::setContext(Shop::CONTEXT_ALL);
+
+        return parent::install() &&
+            $this->installModuleTab() &&
+            $this->registerHook('leftColumn') &&
+            $this->registerHook('header') &&
+            Configuration::updateValue('usuario', 'my friend');
     }
 
     public function uninstall() {

@@ -128,7 +128,7 @@ class AdminUsuarioController extends ModuleAdminController {
 
     public function initContent(){
         parent::initContent();
-        //$this->setTemplate('usuario.tpl');
+        //$this->setTemplate('listar.tpl');
         $this->bootstrap = true;
     }
 

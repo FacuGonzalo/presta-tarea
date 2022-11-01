@@ -1,12 +1,12 @@
 <?php /* Smarty version Smarty-3.1.19, created on 2022-11-01 16:21:37
-         compiled from "/var/www/html/modules/usuario/views/templates/admin/usuario/usuario.tpl" */ ?>
+         compiled from "/var/www/html/modules/usuario/views/templates/admin/usuario/listar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:942310768636133241b17a9-26488229%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ee282e8b1afa095d1c4e8cb6a86f245a74a1f533' => 
     array (
-      0 => '/var/www/html/modules/usuario/views/templates/admin/usuario/usuario.tpl',
+      0 => '/var/www/html/modules/usuario/views/templates/admin/usuario/listar.tpl',
       1 => 1667315916,
       2 => 'file',
     ),
