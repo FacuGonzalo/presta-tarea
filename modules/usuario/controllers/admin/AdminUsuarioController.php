@@ -15,7 +15,6 @@ class AdminUsuarioController extends ModuleAdminController {
         $this->bootstrap = true;
         $this->max_image_size = (int)Configuration::get('PS_PRODUCT_PICTURE_MAX_SIZE');
 
-        // List records
         $this->_defaultOrderBy = 'a.id';
         $this->_defaultOrderWay = 'ASC';
         $this->_select = 'a.name as `Nombre`';
@@ -43,7 +42,7 @@ class AdminUsuarioController extends ModuleAdminController {
                     'label' => 'Nombre',
                     'name' => 'name',
                     'required' => true,
-                    'maxlength' => 50,
+                    'maxlength' => 20,
                     'col' => 4,
                 ],
                 [
@@ -51,7 +50,7 @@ class AdminUsuarioController extends ModuleAdminController {
                     'label' => 'Apellido',
                     'name' => 'lastname',
                     'required' => true,
-                    'maxlength' => 50,
+                    'maxlength' => 20,
                     'col' => 4,
                 ],
                 [
@@ -59,7 +58,7 @@ class AdminUsuarioController extends ModuleAdminController {
                     'label' => 'Descripcion',
                     'name' => 'description',
                     'required' => true,
-                    'maxlength' => 150,
+                    'maxlength' => 100,
                     'col' => 4,
                 ],
                 [

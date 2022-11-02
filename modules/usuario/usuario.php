@@ -7,7 +7,7 @@ if (!defined('_PS_VERSION_')) {
 class Usuario extends Module {
 
     public function __construct() {
-        $this->name = 'usuario'; // must match folder & file name
+        $this->name = 'usuario';
         $this->tab = 'administration';
         $this->version = '1.0.0';
         $this->author = 'Facundo Gonzalo';
@@ -45,10 +45,10 @@ class Usuario extends Module {
         foreach ($langs as $lang) {
             $tab->name[$lang['id_lang']] = 'Usuarios';
         }
+        $tab->icon = 'user';
         $tab->module = $this->name;
         $tab->id_parent = 0;
         $tab->class_name = 'AdminUsuario';
-        $tab->icon = 'settings_applications';
 
         return $tab->save();
     }
