@@ -3,4 +3,4 @@
 <h2><b>Descripción:</b> {$user->description}</h2>
 <h2><b>Género:</b> {$genre}</h2>
 <br />
-<img src="http://localhost:8080/modules{$user->photo}" alt="{$user->name} {$user->lastname}" width="200" height="200">
+<img src="{$_SERVER['REQUEST_URI']}/modules{$user->photo}" alt="{$user->name} {$user->lastname}" width="200" height="200">
