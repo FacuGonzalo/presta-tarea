@@ -1,3 +1,4 @@
+{*
 <form>
     <div class="form-group">
         <label for="name">Nombre</label>
@@ -32,4 +33,4 @@
         </div>
     </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
+</form>*}

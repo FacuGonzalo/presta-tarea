@@ -19,18 +19,18 @@ class AdminUsuarioController extends ModuleAdminController {
         $this->_defaultOrderBy = 'a.id';
         $this->_defaultOrderWay = 'ASC';
         $this->_select = 'a.name as `Nombre`';
+
+        $this->addRowAction('view');
+        $this->addRowAction('edit');
+        $this->addRowAction('delete');
+
         $this->fields_list = [
             'id' => ['title' => 'ID', 'class' => 'fixed-width-xs'],
-            'photo' => ['title' => 'Foto', 'search' => false, 'class' => 'fixed-width-xs'],
             'name' => ['title' => 'Nombre'],
             'lastname' => ['title' => 'Apellido'],
             'description' => ['title' => 'Descripcion'],
             'genre' => ['title' => 'Genero'],
         ];
-
-        $this->addRowAction('edit');
-        $this->addRowAction('view');
-        $this->addRowAction('delete');
 
         $this->fields_form = [
             'legend' => [
@@ -95,10 +95,6 @@ class AdminUsuarioController extends ModuleAdminController {
         ];
     }
 
-    public function getPhoto($photo){
-        return '<img src="'._MODULE_DIR_.'usuario/img/'.$photo.'" width="100" height="100">';
-    }
-
     protected function uploadImage(){
         if (isset($_FILES['photo']) && isset($_FILES['photo']['tmp_name']) && !empty($_FILES['photo']['tmp_name'])) {
             if ($error = ImageManager::validateUpload($_FILES['photo'], Tools::getMaxUploadSize($_FILES['photo']))) {
@@ -108,7 +104,7 @@ class AdminUsuarioController extends ModuleAdminController {
                 $ext = substr($_FILES['photo']['name'], strrpos($_FILES['photo']['name'], '.') + 1);
                 $file_name = md5($_FILES['photo']['name']).'.'.$ext;
                 if (!move_uploaded_file($_FILES['photo']['tmp_name'], _PS_MODULE_DIR_ . 'usuario/img/'.$file_name)) {
-                    return $this->displayError($this->l('An error occurred while attempting to upload the file.'));
+                    return $this->displayError($this->l('Ocurrió un error al subir la imagen'));
                 }
                 else {
                     if (isset($this->object->photo) && !empty($this->object->photo)) {
@@ -125,13 +121,20 @@ class AdminUsuarioController extends ModuleAdminController {
         return str_replace(_DB_PREFIX_, '', parent::getFromClause());
     }
 
+    public function renderView(){
+        $this->tpl_view_vars = [
+            'user' => $this->object,
+            'genre' => $this->object->genre == 1 ? 'Masculino' : ($this->object->genre == 2 ? 'Femenino' : 'Otro'),
+        ];
+        return parent::renderView();
+    }
+
     public function init(){
         parent::init();
     }
 
     public function initContent(){
         parent::initContent();
-        //$this->setTemplate('listar.tpl');
         $this->bootstrap = true;
     }
 
