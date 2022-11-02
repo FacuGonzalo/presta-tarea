@@ -12,6 +12,8 @@ class UsuarioListarModuleFrontController extends ModuleFrontController{
         parent::initContent();
         $this->context->smarty->assign(array('path'=>'Usuario'));
         $this->setTemplate('listar.tpl');
+        $usuario = Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'user');
+        $this->context->smarty->assign(array('usuario'=>$usuario));
     }
 
     public function setMedia(){

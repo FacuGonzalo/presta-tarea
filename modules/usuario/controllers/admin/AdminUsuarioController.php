@@ -13,7 +13,6 @@ class AdminUsuarioController extends ModuleAdminController {
         $this->className = 'UsuarioModel';
         $this->allow_export = true;
         $this->bootstrap = true;
-        $this->imageType = 'jpg';
         $this->max_image_size = (int)Configuration::get('PS_PRODUCT_PICTURE_MAX_SIZE');
 
         // List records
@@ -22,18 +21,17 @@ class AdminUsuarioController extends ModuleAdminController {
         $this->_select = 'a.name as `Nombre`';
         $this->fields_list = [
             'id' => ['title' => 'ID', 'class' => 'fixed-width-xs'],
-            'photo' => ['title' => 'Foto', 'class' => 'image'],
+            'photo' => ['title' => 'Foto', 'search' => false, 'class' => 'fixed-width-xs'],
             'name' => ['title' => 'Nombre'],
             'lastname' => ['title' => 'Apellido'],
             'description' => ['title' => 'Descripcion'],
             'genre' => ['title' => 'Genero'],
         ];
 
-        $this->addRowAction('details');
         $this->addRowAction('edit');
-        $this->addRowAction('delete');
         $this->addRowAction('view');
-        $this->addRowAction('create');
+        $this->addRowAction('delete');
+
         $this->fields_form = [
             'legend' => [
                 'title' => 'Informacion del usuario',
@@ -45,6 +43,7 @@ class AdminUsuarioController extends ModuleAdminController {
                     'label' => 'Nombre',
                     'name' => 'name',
                     'required' => true,
+                    'maxlength' => 50,
                     'col' => 4,
                 ],
                 [
@@ -52,6 +51,7 @@ class AdminUsuarioController extends ModuleAdminController {
                     'label' => 'Apellido',
                     'name' => 'lastname',
                     'required' => true,
+                    'maxlength' => 50,
                     'col' => 4,
                 ],
                 [
@@ -59,6 +59,7 @@ class AdminUsuarioController extends ModuleAdminController {
                     'label' => 'Descripcion',
                     'name' => 'description',
                     'required' => true,
+                    'maxlength' => 150,
                     'col' => 4,
                 ],
                 [
@@ -85,34 +86,36 @@ class AdminUsuarioController extends ModuleAdminController {
                     'name' => 'photo',
                     'required' => true,
                     'col' => 4,
-                    'action' => 'uploadImage',
                 ],
             ],
             'submit' => [
                 'title' => 'Guardar',
+                'action' => $this->uploadImage(),
             ],
         ];
     }
 
+    public function getPhoto($photo){
+        return '<img src="'._MODULE_DIR_.'usuario/img/'.$photo.'" width="100" height="100">';
+    }
+
     protected function uploadImage(){
-        $id = (int)Tools::getValue('id');
-        $image = $_FILES['photo'];
-        $image_name = $image['name'];
-        $image_tmp = $image['tmp_name'];
-        $image_type = $image['type'];
-        $image_size = $image['size'];
-        $image_error = $image['error'];
-        $image_ext = explode('.', $image_name);
-        $image_ext = strtolower(end($image_ext));
-        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
-        if(in_array($image_ext, $allowed)){
-            if($image_error === 0){
-                if($image_size <= $this->max_image_size){
-                    $image_name_new = uniqid('', true) . '.' . $image_ext;
-                    $image_destination = _PS_MODULE_DIR_ . 'usuario/views/img/' . $image_name_new;
-                    if(move_uploaded_file($image_tmp, $image_destination)){
-                        $this->updateImage($id, $image_name_new);
+        if (isset($_FILES['photo']) && isset($_FILES['photo']['tmp_name']) && !empty($_FILES['photo']['tmp_name'])) {
+            if ($error = ImageManager::validateUpload($_FILES['photo'], Tools::getMaxUploadSize($_FILES['photo']))) {
+                return $this->displayError($this->l($error));
+            }
+            else {
+                $ext = substr($_FILES['photo']['name'], strrpos($_FILES['photo']['name'], '.') + 1);
+                $file_name = md5($_FILES['photo']['name']).'.'.$ext;
+                if (!move_uploaded_file($_FILES['photo']['tmp_name'], _PS_MODULE_DIR_ . 'usuario/img/'.$file_name)) {
+                    return $this->displayError($this->l('An error occurred while attempting to upload the file.'));
+                }
+                else {
+                    if (isset($this->object->photo) && !empty($this->object->photo)) {
+                        @unlink(_PS_MODULE_DIR_ . 'usuario/img/'.$this->object->photo);
                     }
+                    $path = '/usuario/img/'.$file_name;
+                    $_POST['photo'] = $path;
                 }
             }
         }
