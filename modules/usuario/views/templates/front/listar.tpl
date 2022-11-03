@@ -4,29 +4,37 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <div class="container">
-    <div id="carouselExampleIndicators" class="carousel slide pointer-event" data-ride="carousel" style="width:400px;margin:auto;">
+    <div id="carousel" class="carousel slide pointer-event" data-ride="carousel" style="width:400px;margin:auto;">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1" class=""></li>
+            <li data-target="#carousel" data-slide-to="2" class=""></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{$_SERVER['REQUEST_URI']}/modules{$usuario[0].photo}" class="d-block w-100" alt="me rompo">
+                <img src="{$_SERVER['REQUEST_URI']}/modules{$usuario[0].photo}" class="d-block w-100" alt="" onclick="showInformation('{$usuario[0].name}', '{$usuario[0].lastname}', '{$usuario[0].description}', '{$usuario[0].genre}')">
+                <div class="carousel-caption"><h3>{$usuario[0].name} {$usuario[0].lastname}</h3><h4>{$usuario[0].description}</h4><p>{$usuario[0].genre}</p></div>
             </div>
             {foreach array_slice($usuario, 1) as $u}
                 <div class="carousel-item">
-                    <img src="{$_SERVER['REQUEST_URI']}/modules{$u.photo}" class="d-block w-100" alt="Absolute Balderdash">
+                    <img src="{$_SERVER['REQUEST_URI']}/modules{$u.photo}" class="d-block w-100" alt="" onclick="showInformation('{$u.name}', '{$u.lastname}', '{$u.description}', '{$u.genre}')">
+                    <div class="carousel-caption"><h3>{$u.name} {$u.lastname}</h3><h4>{$u.description}</h4><p>{$u.genre}</p></div>
                 </div>
             {/foreach}
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Anterior</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Siguiente</span>
         </a>
     </div>
 </div>
+
+<script>
+    function showInformation(name, lastname, description, genre) {
+        alert("Nombre: " + name + " " + "\nApellido: " + lastname + "\nDescripción: " + description + "\nGénero: " + genre);
+    }
+</script>
