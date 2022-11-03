@@ -24,11 +24,9 @@ class AdminUsuarioController extends ModuleAdminController {
         $this->addRowAction('delete');
 
         $this->fields_list = [
-            'id' => ['title' => 'ID', 'class' => 'fixed-width-xs'],
             'name' => ['title' => 'Nombre'],
             'lastname' => ['title' => 'Apellido'],
             'description' => ['title' => 'Descripcion'],
-            'genre' => ['title' => 'Genero'],
         ];
 
         $this->fields_form = [

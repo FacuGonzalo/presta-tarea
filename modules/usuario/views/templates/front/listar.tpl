@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="container">
     <div id="carousel" class="carousel slide pointer-event" data-ride="carousel" style="width:400px;margin:auto;">
@@ -12,13 +13,13 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{$_SERVER['REQUEST_URI']}/modules{$usuario[0].photo}" class="d-block w-100" alt="" onclick="showInformation('{$usuario[0].name}', '{$usuario[0].lastname}', '{$usuario[0].description}', '{$usuario[0].genre}')">
-                <div class="carousel-caption"><h3>{$usuario[0].name} {$usuario[0].lastname}</h3><h4>{$usuario[0].description}</h4><p>{$usuario[0].genre}</p></div>
+                <img src="{$_SERVER['REQUEST_URI']}/modules{$usuario[0].photo}" class="d-block w-100" alt="" onclick="showInformation('{$usuario[0].description}', '{$usuario[0].genre}')">
+                <div class="carousel-caption"><h3>{$usuario[0].name} {$usuario[0].lastname}</h3></div>
             </div>
             {foreach array_slice($usuario, 1) as $u}
                 <div class="carousel-item">
-                    <img src="{$_SERVER['REQUEST_URI']}/modules{$u.photo}" class="d-block w-100" alt="" onclick="showInformation('{$u.name}', '{$u.lastname}', '{$u.description}', '{$u.genre}')">
-                    <div class="carousel-caption"><h3>{$u.name} {$u.lastname}</h3><h4>{$u.description}</h4><p>{$u.genre}</p></div>
+                    <img src="{$_SERVER['REQUEST_URI']}/modules{$u.photo}" class="d-block w-100" alt="" onclick="showInformation('{$u.description}', '{$u.genre}')">
+                    <div class="carousel-caption"><h3>{$u.name} {$u.lastname}</h3</div>
                 </div>
             {/foreach}
         </div>
@@ -34,7 +35,7 @@
 </div>
 
 <script>
-    function showInformation(name, lastname, description, genre) {
-        alert("Nombre: " + name + " " + "\nApellido: " + lastname + "\nDescripción: " + description + "\nGénero: " + genre);
+    function showInformation(description, genre) {
+        Swal.fire("Descripción: " + description + "\nGénero: " + genre);
     }
 </script>
