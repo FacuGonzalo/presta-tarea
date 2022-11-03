@@ -12,7 +12,7 @@ class UsuarioListarModuleFrontController extends ModuleFrontController{
         parent::initContent();
         $this->context->smarty->assign(array('path'=>'Usuario'));
         $this->setTemplate('listar.tpl');
-        $usuario = Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'user');
+        $usuario = Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'user ORDER BY RAND() LIMIT 3');
         $this->context->smarty->assign(array('usuario'=>$usuario));
     }
 
