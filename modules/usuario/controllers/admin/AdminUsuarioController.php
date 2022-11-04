@@ -42,6 +42,7 @@ class AdminUsuarioController extends ModuleAdminController {
                     'required' => true,
                     'maxlength' => 20,
                     'col' => 4,
+                    'hint' => $this->l('Caracteres no válidos:').' 0-9!&lt;&gt;,;?=+()@#"°{}_$%:'
                 ],
                 [
                     'type' => 'text',
@@ -50,6 +51,7 @@ class AdminUsuarioController extends ModuleAdminController {
                     'required' => true,
                     'maxlength' => 20,
                     'col' => 4,
+                    'hint' => $this->l('Caracteres no válidos:').' 0-9!&lt;&gt;,;?=+()@#"°{}_$%:'
                 ],
                 [
                     'type' => 'textarea',
@@ -95,7 +97,7 @@ class AdminUsuarioController extends ModuleAdminController {
     protected function uploadImage(){
         if (isset($_FILES['photo']) && isset($_FILES['photo']['tmp_name']) && !empty($_FILES['photo']['tmp_name'])) {
             if ($error = ImageManager::validateUpload($_FILES['photo'], Tools::getMaxUploadSize($_FILES['photo']))) {
-                return $this->displayError($this->l($error));
+                $this->errors[] = $error;
             }
             else {
                 $ext = substr($_FILES['photo']['name'], strrpos($_FILES['photo']['name'], '.') + 1);

@@ -10,17 +10,15 @@ class UsuarioModel extends ObjectModel {
     public static $definition = [
         'table' => 'user',
         'primary' => 'id',
-        'multilang' => true,
-        'multilang_shop' => false,
         'fields' => [
             'name' =>  [
                 'type' => self::TYPE_STRING,
-                'validate' => 'isAnything',
-                'required'=>true
+                'validate' => 'isName',
+                'required'=> true,
             ],
             'lastname' =>  [
                 'type' => self::TYPE_STRING,
-                'validate' => 'isAnything',
+                'validate' => 'isName',
                 'required'=>true
             ],
             'genre' =>  [
@@ -30,13 +28,10 @@ class UsuarioModel extends ObjectModel {
             ],
             'description' =>  [
                 'type' => self::TYPE_STRING,
-                'validate' => 'isAnything',
                 'required'=>true
             ],
             'photo' => [
                 'type' => self::TYPE_STRING,
-                'lang' => false,
-                'validate' =>  null,
                 'size' => 255,
             ],
         ],
