@@ -103,7 +103,7 @@ class AdminUsuarioController extends ModuleAdminController {
                 $ext = substr($_FILES['photo']['name'], strrpos($_FILES['photo']['name'], '.') + 1);
                 $file_name = md5($_FILES['photo']['name']).'.'.$ext;
                 if (!move_uploaded_file($_FILES['photo']['tmp_name'], _PS_MODULE_DIR_ . 'usuario/img/'.$file_name)) {
-                    return $this->displayError($this->l('Ocurrió un error al subir la imagen'));
+                    $this->errors[] = $this->l('Ocurrio un error al subir la imagen');
                 }
                 else {
                     if (isset($this->object->photo) && !empty($this->object->photo)) {
