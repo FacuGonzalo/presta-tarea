@@ -1,4 +1,4 @@
-<?php /*%%SmartyHeaderCode:177574135163640bdd2dea78-95974135%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:975860877636523cd65eee6-08002484%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -9,7 +9,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '177574135163640bdd2dea78-95974135',
+  'nocache_hash' => '975860877636523cd65eee6-08002484',
   'variables' => 
   array (
     'link' => 0,
@@ -20,10 +20,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_63640bdd886657_03823567',
+  'unifunc' => 'content_636523ce414452_15935166',
   'cache_lifetime' => 31536000,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_63640bdd886657_03823567')) {function content_63640bdd886657_03823567($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_636523ce414452_15935166')) {function content_636523ce414452_15935166($_smarty_tpl) {?>
 <!-- Block myaccount module -->
 <section class="footer-block col-xs-12 col-sm-4">
 	<h4><a href="http://localhost:8080/mi-cuenta" title="Administrar mi cuenta de cliente" rel="nofollow">Mi cuenta</a></h4>

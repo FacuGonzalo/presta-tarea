@@ -13,29 +13,31 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{$_SERVER['REQUEST_URI']}/modules{$usuario[0].photo}" class="d-block w-100" alt="" onclick="showInformation('{$usuario[0].description}', '{$usuario[0].genre}')">
+                <img src="{$_SERVER['REQUEST_URI']}/modules{$usuario[0].photo}" class="d-block w-100" alt="" onclick="showInformation('{$usuario[0].name}', '{$usuario[0].lastname}', '{$usuario[0].description}', '{$usuario[0].genre}')">
                 <div class="carousel-caption"><h3>{$usuario[0].name} {$usuario[0].lastname}</h3></div>
             </div>
-            {foreach array_slice($usuario, 1) as $u}
-                <div class="carousel-item">
-                    <img src="{$_SERVER['REQUEST_URI']}/modules{$u.photo}" class="d-block w-100" alt="" onclick="showInformation('{$u.description}', '{$u.genre}')">
-                    <div class="carousel-caption"><h3>{$u.name} {$u.lastname}</h3</div>
-                </div>
-            {/foreach}
+            <div class="carousel-item">
+                <img src="{$_SERVER['REQUEST_URI']}/modules{$usuario[1].photo}" class="d-block w-100" alt="" onclick="showInformation('{$usuario[1].name}', '{$usuario[1].lastname}', '{$usuario[1].description}', '{$usuario[1].genre}')">
+                <div class="carousel-caption"><h3>{$usuario[1].name} {$usuario[1].lastname}</h3></div>
+            </div>
+            <div class="carousel-item">
+                <img src="{$_SERVER['REQUEST_URI']}/modules{$usuario[2].photo}" class="d-block w-100" alt="" onclick="showInformation('{$usuario[2].name}', '{$usuario[2].lastname}', '{$usuario[2].description}', '{$usuario[2].genre}')">
+                <div class="carousel-caption"><h3>{$usuario[2].name} {$usuario[2].lastname}</h3></div>
+            </div>
         </div>
         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
             <span class="sr-only">Anterior</span>
         </a>
         <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
             <span class="sr-only">Siguiente</span>
         </a>
     </div>
 </div>
 
 <script>
-    function showInformation(description, genre) {
-        Swal.fire("Descripción: " + description + "\nGénero: " + genre);
+    function showInformation(name, lastname, description, genre) {
+        Swal.fire("Nombre: " + name + " " + "\nApellido: " + lastname + "\nDescripción: " + description + "\nGénero: " + genre);
     }
 </script>
